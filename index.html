@@ -90,37 +90,49 @@ function initialize(position) {
   };
   var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
 
-  var contentString = '<div id="content">'+
+  /*var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="forthHeading" class="forthHeading">Name des Trinkbrunnens</h1>'+
+      '<h1 id="forthHeading" class="forthHeading">Name des Trinkbrunnens: </h1>'+ 
       '<div id="bodyContent">'+ 'Entfernung:'
       
       '</div>'+
-      '</div>';
+      '</div>';*/
 
-  var infowindow = new google.maps.InfoWindow({
+  /*var infowindow = new google.maps.InfoWindow({
       content: contentString
-  });
+  });*/
 
   var image = 'Maennchen1.png';
   var marker=new google.maps.Marker({position:latlon,map:map,title:"Ihr Standort", icon: image});
   for (var i = 0; i < TB.length; ++i){
-  //latlon = new google.maps.LatLng(52.532292, 13.415526) ;
+	//latlon = new google.maps.LatLng(52.532292, 13.415526) ;
 
- 
-  latlon = new google.maps.LatLng(TB[i][0], TB[i][1]);
-  //Markierung setzen
-  //Icon von Trinkbrunnen wird blauer Tropfen (im gleichen Ordner gespeichert)
-  image = 'TropfenIcon2.png';
-  var name = TB[i][2];
-  var marker1 = new google.maps.Marker({position:latlon,map:map,title: name, icon: image })
-  
-  }
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.open(map,marker);
+	(function(){
+		var latlon = new google.maps.LatLng(TB[i][0], TB[i][1]);
+		//Markierung setzen
+		//Icon von Trinkbrunnen wird blauer Tropfen (im gleichen Ordner gespeichert)
+		var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      'Name des Brunnens: '+ '<br />'+ TB[i][2] +
+      '<div id="bodyContent">'+ //'Entfernung:' +
+      
+      '</div>'+
+      '</div>';
+	  var infowindow = new google.maps.InfoWindow({
+      content: contentString
   });
-    x.innerHTML= "Trinkbrunnen in deiner Umgebung =)";
+		var image = 'TropfenIcon2.png';
+		var name = TB[i][2];
+		var marker1 = new google.maps.Marker({position:latlon,map:map,title: name, icon: image })
+		google.maps.event.addListener(marker1, 'click', function() {
+			infowindow.open(map,marker1);
+		});
+	}());
+}
+
+x.innerHTML= "Trinkbrunnen in deiner Umgebung =)";
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
