@@ -1,0 +1,3 @@
+To extract all fountains from an OSM file, install osmosis and run this filter:
+    ./osmosis -q --read-xml munich.osm --tf accept-nodes amenity=fountain --write-xml --tf reject-ways file=- > munich-fountains.osm
+
