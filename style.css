@@ -1,0 +1,13 @@
+body {
+	font-family:"Arial";
+	font-size:24px;
+	text-align:center;
+}
+
+#mapholder, img {
+	margin:auto;
+}
+
+button {
+	margin-bottom: 10px;
+}
